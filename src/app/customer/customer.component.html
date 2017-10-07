@@ -1,0 +1,47 @@
+<div>
+    <div class="container">
+        <div class="row">
+                 <div>
+                     <header>
+                         <h3>
+                         <span class="glyphicon glyphicon-user"></span>
+                         Customer Application
+                         </h3>
+                     </header>
+                 </div>
+               <div class="col-md-10">
+                   <div class="navbar">
+                       <ul class="nav navbar-nav">
+                           <li  class="toolbaritem">
+                               <a (click)="changeMode('card')">
+                                   <span class="glyphicon glyphicon-th-large"></span> Card View                           			
+                               </a>
+                           </li>
+                           <li class="toolbaritem">
+                               <a (click)="changeMode('grid')">
+                                   <span class="glyphicon glyphicon-align-justify"></span> ListView
+                               </a>
+                           </li>
+                       </ul>
+                       <form class="navbar-form navbar-right">
+                           <div class="form-group">
+                               <label class="navbarText col-sm-2">Filter:</label>
+                               <div class="col-sm-10">
+                                   <input type="text" 
+                                    name="searchtext"
+                                    [(ngModel)]="searchText"
+                                    (keyup) = "doFilter()"
+                                    class="novalidate form-control" />
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+   </div>
+ 
+</div>
+
+<app-customer-card [hidden]="displayMode != 'card'" [customers] ="customers" (removeEvent)="remove($event)" (updateEvent)="update($event)"></app-customer-card>
+<app-customer-grid [hidden]="displayMode != 'grid'"></app-customer-grid>
+<app-customer-edit [customer]="customerToEdit"></app-customer-edit>
